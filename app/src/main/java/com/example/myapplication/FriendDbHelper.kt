@@ -1,8 +1,10 @@
 package com.example.myapplication
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
 
 class FriendDbHelper private constructor(val context: Context) :
     SQLiteOpenHelper(context, DB_FILE, null, 1) {
@@ -36,6 +38,26 @@ class FriendDbHelper private constructor(val context: Context) :
         if (oldVersion != newVersion) {
             db?.execSQL("drop table if exists $TABLE")
             onCreate(db)
+        }
+    }
+
+    fun addFriend(name: String) {
+        val cv = ContentValues()
+        cv.put(NAME, name)
+
+        writableDatabase.insert(TABLE, null, cv)
+        writableDatabase.close()
+    }
+
+    fun printAllFriends() {
+        val c = readableDatabase.query(TABLE, arrayOf(NAME),
+            null, null, null, null, null)
+        if (c.count != 0) {
+            c.moveToFirst()
+            do {
+                Toast.makeText(context, "Friend: ${c.getString(0)}",
+                    Toast.LENGTH_SHORT).show()
+            } while (c.moveToNext())
         }
     }
 }

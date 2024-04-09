@@ -11,5 +11,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        FriendDbHelper.init(this)
+        val dbHelper = FriendDbHelper.getInstance()
+
+        binding.btSave.setOnClickListener {
+            dbHelper?.addFriend(binding.edName.text.toString())
+        }
+
+        binding.btList.setOnClickListener {
+            dbHelper?.printAllFriends()
+        }
     }
 }
