@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 //            上面是原本的程式，傳入 addFriend() 裡面的參數類型是 String，
 //            因為我們要透過 Friend data class 傳遞資料，所以需要修改一下
 // 這邊將從螢幕上獲得的使用者輸入字串先轉成 Friend class
-            val friend = Friend(binding.edName.text.toString())
+            val friend = Friend(binding.edName.text.toString(), binding.edTel.text.toString())
 //            dbHelper 是我們創建的FriendDbHelper的
             dbHelper?.addFriend(friend) // 這邊就是呼叫 dbHelper物件的 addFriend()方法
 
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 for (f in friendList){
 //                    Toast 類別中為其所定義的 LENGTH_LONG 或 LENGTH_SHORT 代表長與短時間的常數
                     // 參數1: Context, 參數2: 想要輸出的字串, 參數3:持續時間，這邊使用Toast定義的常數
-                    Toast.makeText(baseContext, "朋友你好: ${f.name}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "朋友 ${f.name} 你好, 你的電話是: ${f.tel}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
