@@ -41,9 +41,17 @@ class FriendDbHelper private constructor(val context: Context) :
         }
     }
 
-    fun addFriend(name: String) {
+//    fun addFriend(name: String) {
+//        val cv = ContentValues()
+//        cv.put(NAME, name)
+//
+//        writableDatabase.insert(TABLE, null, cv)
+//        writableDatabase.close()
+//    } 上面是原本的 funtion，下面是將參數改為用 新建立的 Friend class 傳遞資料
+
+    fun addFriend(friend: Friend) {
         val cv = ContentValues()
-        cv.put(NAME, name)
+        cv.put(NAME, friend.name)
 
         writableDatabase.insert(TABLE, null, cv)
         writableDatabase.close()
