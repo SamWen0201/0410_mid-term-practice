@@ -68,4 +68,20 @@ class FriendDbHelper private constructor(val context: Context) :
             } while (c.moveToNext())
         }
     }
+
+//    透過 Friend類別傳送資料
+    fun getAllFriend():ArrayList<Friend> { // 這邊透過回傳 Friend 陣列
+        val friends =  arrayListOf<Friend>() // 回傳 儲存 Friend類別的 空陣列給 friends
+
+        val c = readableDatabase.query(TABLE, arrayOf(NAME),
+            null, null, null, null, null)
+        if (c.count != 0) {
+            c.moveToFirst()
+            do {
+                friends.add(Friend(c.getString(0))) // 將column 中的 內容提取出來, 並轉換成 Friend類別，儲存到 friends 陣列當中
+            } while (c.moveToNext())
+        }
+    // 最後將這個含有 姓名的 friends return
+        return friends
+    }
 }
