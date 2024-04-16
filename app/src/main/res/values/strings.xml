@@ -3,4 +3,5 @@
     <string name="name">朋友姓名：</string>
     <string name="save">儲存</string>
     <string name="list">列表</string>
+    <string name="tel">電話:</string>
 </resources>
