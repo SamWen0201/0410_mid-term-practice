@@ -33,6 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+//    透過 dataBinding來控制畫面
     buildFeatures {
         dataBinding = true
     }

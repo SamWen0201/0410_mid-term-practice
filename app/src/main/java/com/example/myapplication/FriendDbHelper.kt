@@ -55,6 +55,7 @@ class FriendDbHelper private constructor(val context: Context) :
         cv.put(NAME, friend.name)
         cv.put(TEL, friend.tel) // 新增tel 欄位
 
+        print(cv)
         writableDatabase.insert(TABLE, null, cv)
         writableDatabase.close()
     }
